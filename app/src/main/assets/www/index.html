@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<title>حرب العصور القديمة — ممالك الحرب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kingdoms-style.css?v=1">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="960" height="540"></canvas>
+
+  <!-- شاشة البداية -->
+  <div id="start-screen">
+    <canvas id="emblem" width="160" height="160"></canvas>
+    <h1>حرب العصور القديمة</h1>
+    <p class="subtitle">⚔️ ممالك الحرب — خمس أراضٍ، جيوش لا تُقهَر</p>
+
+    <div class="section-label">🗺️ اختر أرض المعركة</div>
+    <div id="biome-grid"></div>
+
+    <div class="section-label">⚡ الصعوبة</div>
+    <div id="diff-row">
+      <button class="diff-btn" data-diff="easy">سهل</button>
+      <button class="diff-btn selected" data-diff="normal">عادي</button>
+      <button class="diff-btn" data-diff="hard">صعب</button>
+    </div>
+
+    <button id="start-btn">ابدأ المعركة ⚔️</button>
+    <p class="hint">استدعِ الوحدات بالأرقام ١-٩ • القدرات Q W E R • إيقاف P • كتم M</p>
+  </div>
+
+  <!-- شريط علوي -->
+  <div id="hud" class="hidden">
+    <div class="hud-chip gold">🪙 <b id="gold-val">0</b></div>
+    <div class="hud-chip">🌊 موجة <b id="wave-val">1</b></div>
+    <div class="hud-chip">💀 <b id="kills-val">0</b></div>
+    <div class="hud-chip">⭐ <b id="level-val">1</b></div>
+    <div class="hud-chip biome" id="biome-chip">🏜️</div>
+    <div class="hud-spacer"></div>
+    <button id="fs-btn" class="icon-btn" title="ملء الشاشة">⛶</button>
+    <button id="mute-btn" class="icon-btn" title="كتم">🔊</button>
+    <button id="pause-btn" class="icon-btn" title="إيقاف">⏸</button>
+  </div>
+
+  <!-- أشرطة القواعد + الخبرة -->
+  <div id="base-bars" class="hidden">
+    <div class="base-bar enemy"><span>🏰 العدو</span><div class="bar"><div id="enemy-base-fill"></div></div></div>
+    <div id="xp-bar"><div id="xp-fill"></div></div>
+    <div class="base-bar player"><span>🏰 قاعدتك</span><div class="bar"><div id="player-base-fill"></div></div></div>
+  </div>
+
+  <!-- شريط القدرات -->
+  <div id="ability-bar" class="hidden">
+    <button class="ability-btn" id="ab-fire" data-ab="fire"><span class="a-icon">🔥</span><span class="a-key">Q</span><div class="a-cd"></div></button>
+    <button class="ability-btn" id="ab-bolt" data-ab="bolt"><span class="a-icon">⚡</span><span class="a-key">W</span><div class="a-cd"></div></button>
+    <button class="ability-btn" id="ab-heal" data-ab="heal"><span class="a-icon">💚</span><span class="a-key">E</span><div class="a-cd"></div></button>
+    <button class="ability-btn" id="ab-freeze" data-ab="freeze"><span class="a-icon">❄️</span><span class="a-key">R</span><div class="a-cd"></div></button>
+  </div>
+
+  <!-- شريط الوحدات السفلي -->
+  <div id="bottom-bar" class="hidden">
+    <button id="upg-btn" title="الترقيات">🛠️</button>
+    <div id="unit-bar"></div>
+  </div>
+
+  <!-- لوحة الترقيات -->
+  <div id="upg-panel" class="hidden"></div>
+
+  <!-- شاشة النهاية -->
+  <div id="end-screen" class="hidden">
+    <h2 id="end-title">انتصار!</h2>
+    <p id="end-sub"></p>
+    <div id="end-stats"></div>
+    <button id="restart-btn">معركة جديدة ⚔️</button>
+  </div>
+
+  <!-- شاشة الإيقاف -->
+  <div id="pause-screen" class="hidden">
+    <h2>إيقاف مؤقت ⏸</h2>
+    <button id="resume-btn">متابعة ▶</button>
+  </div>
+
+  <!-- تلميح تدوير الجوال -->
+  <div id="rotate-hint" class="hidden">
+    <div class="rh-box">
+      <div class="rh-phone">📱</div>
+      <p>أدر جهازك أفقياً لتجربة أفضل!</p>
+      <button id="rotate-ok">ملء الشاشة 🔄</button>
+      <button id="rotate-dismiss">لاحقاً</button>
+    </div>
+  </div>
+</div>
+<script>window.onerror = function(msg, src, line, col) { var d = document.createElement('div'); d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#a00;color:#fff;font:12px monospace;padding:4px;white-space:pre-wrap;'; d.textContent = 'ERR: ' + msg + ' @' + src + ':' + line + ':' + col; document.body.appendChild(d); };</script>
+<script src="kingdoms-engine.js?v=1"></script>
+</body>
+</html>
